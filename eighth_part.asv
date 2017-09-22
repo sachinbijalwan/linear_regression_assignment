@@ -1,0 +1,49 @@
+function eighth_part()
+val=0.1;
+fractions=zeros(10);
+for i=1:10
+    fractions(i)=val;
+    val=val+0.1;
+end
+for j=1:10
+lambdas=zeros(100,1);
+val=0;
+test_error=zeros(100,1);
+train_error=zeros(100,1);
+filename='linregdata.txt';
+fraction=fractions(j);
+for i=1:length(lambdas(:,1))
+lambdas(i,1)=val;        
+val=val+1;
+end
+for i=1:length(lambdas(:,1))
+    clear A X Y w train_y train_error test_y test_error
+    % filename='train.txt';
+    A=initialize_variables(filename);
+    lambda=lambdas(i,1);
+    e=0;
+    [train_X,train_Y,test_X,test_Y]=learn_X_Y(A,e,fraction);
+    w=mylinridgereg(train_X,train_Y,lambda);
+    train_out_y=mylinridgeregeval(train_X,w);
+    train_error(i)=meansquarederr(train_out_y,train_Y);    %print
+    % training part over test part begins
+    % clear A X Y;
+    % filename='test.txt';
+    % A=initialize_variables(filename);
+    % [X,Y]=learn_X_Y(A);
+    test_out_y=mylinridgeregeval(test_X,w);
+    test_error(i)=meansquarederr(test_out_y,test_Y); %print
+    % test_error(i,1)=test_error;
+end
+figure
+subplot(10,2,2*i)
+plot(lambdas,test_error)
+title(strcat('test_error plot for fraction ',fraction))
+ylim([0,5])
+subplot(10,2,2*i+1)
+plot(lambdas,train_error)
+title(strcat('train_error plot for fraction ',fraction))
+end
+
+
+end

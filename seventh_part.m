@@ -1,6 +1,4 @@
-% system("g++ -std=c++11 randomlineselecter.cpp");
-% system("./a.out");
-
+function seventh_part()
 lambdas=zeros(200,1);
 val=0;
 error=zeros(200,1);
@@ -17,8 +15,8 @@ for i=1:length(lambdas(:,1))
     e=0;
     [train_X,train_Y,test_X,test_Y]=learn_X_Y(A,e);
     w=mylinridgereg(train_X,train_Y,lambda);
-    train_out_y=mylinridgeregeval(train_X,w);
-    train_error=meansquarederr(train_out_y,train_Y);    %print
+    % train_out_y=mylinridgeregeval(train_X,w);
+    % train_error=meansquarederr(train_out_y,train_Y);    %print
     % training part over test part begins
     % clear A X Y;
     % filename='test.txt';
@@ -29,4 +27,4 @@ for i=1:length(lambdas(:,1))
     error(i,1)=test_error;
 end
 plot(lambdas,error);
-%% 6th part run only after running 1st par
+end
