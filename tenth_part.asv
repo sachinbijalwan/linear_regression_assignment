@@ -1,0 +1,28 @@
+function tenth_part()
+[error,lambda,fraction,w]=ninth_part(0);
+filename='linregdata.txt';
+A=initialize_variables(filename);
+e=1;
+[train_X,train_Y,test_X,test_Y]=learn_X_Y(A,e,fraction);
+train_out_y=mylinridgeregeval(train_X,w);
+test_out_y=mylinridgeregeval(test_X,w);
+
+figure(3);
+subplot(1,2,1);
+plot(train_out_y,train_Y,'r+');
+lim=max(max(train_Y),max(train_out_y));
+title('train graph');
+xlim([0,lim]);
+ylim([0,lim]);
+hold on;
+plot(0:lim,0:lim,'g-','LineWidth',1);
+
+subplot(1,2,2);
+plot(test_out_y,test_Y,'r+');
+lim=max(max(test_y),max(test_out_y));
+title('test graph');
+xlim([0,lim]);
+ylim([0,lim]);
+hold on;
+plot(0:lim,0:lim,'g-','LineWidth',1);
+end
