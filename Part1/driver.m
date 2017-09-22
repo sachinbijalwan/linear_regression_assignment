@@ -73,7 +73,7 @@ fprintf("After: train error: %f :: test error: %f\n",train_error,test_error);
 %% part 7: partition and part:8 plot
 iter=100;
 A=initialize_variables('linregdata.txt');
-lambdas=linspace(0,1,10)';
+lambdas=linspace(0,1,100)';
 frec=0.1:0.1:0.9;%[0.1 0.3 0.5 0.7 0.9];
 Testerror=zeros(length(frec),length(lambdas));
 Trainerror=zeros(length(frec),length(lambdas));
